@@ -36,12 +36,15 @@ def reduction_func(hash: str, idx_col: int):
 # build the rainbow table
 def build():
     end_to_start_matching = dict()
+
     for row_num in range(NUM_ROWS):
         init_plaintext = reduction_func(hex(row_num), 0)
         plaintext = init_plaintext
+
         for i in range(NUM_REDUCTIONS):
             h = hashing_func(plaintext)
             plaintext = reduction_func(h, i)
+
         end_to_start_matching[plaintext] = init_plaintext
 
         print('Row {} reduction finished.'.format(row_num))
